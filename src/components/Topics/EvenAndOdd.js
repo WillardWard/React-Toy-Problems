@@ -10,6 +10,18 @@ class EvenAndOdd extends Component {
     };
   }
 
+  solve = () => {
+    const userString = this.state.userInput;
+    const userArray = [...userString];
+    userArray.forEach((element) => {
+      if (Number.isInteger(element)) {
+        element % 2 === 0
+          ? this.state.evenArray.value.push(element)
+          : this.state.oddArray.value.push(element);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="puzzleBox evenAndOddPB">
@@ -18,8 +30,8 @@ class EvenAndOdd extends Component {
           className="inputLine"
           onChange={(event) => this.setState({ userInput: event.target.value })}
         ></input>
-        <button className="confirmationButton"></button>
-        <span className="resultsBox"></span>
+        <button className="confirmationButton" onClick={this.solve}></button>
+        <span className="resultsBox">{this.evenArray}</span>
         <span className="resultsBox"></span>
       </div>
     );
