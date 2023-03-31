@@ -13,13 +13,22 @@ class EvenAndOdd extends Component {
   solve = () => {
     const userString = this.state.userInput;
     const userArray = [...userString];
+    let evens = [];
+    let odds = [];
+
     userArray.forEach((element) => {
-      if (Number.isInteger(element)) {
-        element % 2 === 0
-          ? this.state.evenArray.value.push(element)
-          : this.state.oddArray.value.push(element);
+      if (!isNaN(element)) {
+        if (parseInt(element, 10) % 2 === 0) {
+          evens.push(element);
+        } else {
+          odds.push(element);
+        }
       }
     });
+
+    this.setState({ evenArray: evens, oddArray: odds });
+
+    console.log(this.state.evenArray);
   };
 
   render() {
@@ -30,9 +39,15 @@ class EvenAndOdd extends Component {
           className="inputLine"
           onChange={(event) => this.setState({ userInput: event.target.value })}
         ></input>
-        <button className="confirmationButton" onClick={this.solve}></button>
-        <span className="resultsBox">{this.evenArray}</span>
-        <span className="resultsBox"></span>
+        <button className="confirmationButton" onClick={this.solve}>
+          Sort the Numbers!
+        </button>
+        <span className="resultsBox">
+          Evens: {JSON.stringify(this.state.evenArray)}
+        </span>
+        <span className="resultsBox">
+          Odds: {JSON.stringify(this.state.oddArray)}
+        </span>
       </div>
     );
   }
