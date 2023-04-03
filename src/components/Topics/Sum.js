@@ -10,6 +10,12 @@ class Sum extends Component {
     };
   }
 
+  sumValues = () => {
+    let total =
+      parseInt(this.state.number1, 10) + parseInt(this.state.number2, 10);
+    this.setState({ sum: total });
+  };
+
   render() {
     return (
       <div className="puzzleBox sumPB">
@@ -22,10 +28,7 @@ class Sum extends Component {
           className="inputLine"
           onChange={(e) => this.setState({ number2: e.target.value })}
         ></input>
-        <button
-          className="confirmationButton"
-          onClick={() => this.sumValues(this.state.number1, this.state.number2)}
-        >
+        <button className="confirmationButton" onClick={this.sumValues}>
           Calculate Sum
         </button>
         <span className="resultsBox">Sum: {this.state.sum}</span>
